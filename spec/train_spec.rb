@@ -47,6 +47,16 @@ describe(Train) do
       new_train1.update({:name => "train1"})
       expect(new_train1.name()).to(eq("train1"))
     end
+    it("lets you add a city to a train") do
+      new_train1 = Train.new({:name => "my_train", :id => nil})
+      new_train1.save()
+      new_city1 = City.new({:name => "Seattle", :id => nil})
+      new_city1.save
+      new_city2 = City.new({:name => "Portland", :id => nil})
+      new_city2.save
+      new_train1.update({:city_ids => [new_city1.id, new_city2.id]})
+      expect(new_train1.cities).to(eq([new_city1, new_city2]))
+    end
   end
 
   describe("#delete") do
@@ -68,6 +78,19 @@ describe(Train) do
     #   train.delete()
     #   expect(Task.all()).to(eq([]))
     # end
+  end
+
+  describe("#cities") do
+    it("returns all cities for a particular train") do
+      new_train1 = Train.new({:name => "my_train", :id => nil})
+      new_train1.save()
+      new_city1 = City.new({:name => "Seattle", :id => nil})
+      new_city1.save
+      new_city2 = City.new({:name => "Portland", :id => nil})
+      new_city2.save
+      new_train1.update({:city_ids => [new_city1.id, new_city2.id]})
+      expect(new_train1.cities).to(eq([new_city1, new_city2]))
+    end
   end
 
 end
