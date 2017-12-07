@@ -7,4 +7,11 @@ describe(Train) do
       expect(new_train).to(be_an_instance_of(Train))
     end
   end
+
+  describe(".all") do
+    it("is empty at first") do
+      expect(Train.all).to(eq([]))
+    end
+  end
+  
 end
