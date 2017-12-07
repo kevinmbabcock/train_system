@@ -26,6 +26,16 @@ class Train
     self.name.==(other_train.name).&(self.id.==(other_train.id))
   end
 
+  def self.find(id)
+    found_train = nil
+    Train.all().each() do |train|
+      if train.id().==(id)
+        found_train = train
+      end
+    end
+    found_train
+  end
+
 
 
 end
