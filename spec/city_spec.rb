@@ -9,6 +9,28 @@ describe(City) do
     end
   end
 
+  describe(".all") do
+    it("is empty in the beginning") do
+      expect(City.all).to(eq([]))
+    end
+  end
+
+  describe("#save") do
+    it("allows you to save cities to the database") do
+      new_city = City.new({:name => "Seattle", :id => nil})
+      new_city.save
+      expect(City.all).to(eq([new_city]))
+    end
+  end
+
+  describe("#==") do
+    it("is the same city if it has the same name") do
+      city1 = City.new({:name => "Seattle", :id => nil})
+      city2 = City.new({:name => "Seattle", :id => nil})
+      expect(city1).to(eq(city2))
+    end
+  end
+
 
 
 
