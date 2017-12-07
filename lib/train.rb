@@ -36,6 +36,12 @@ class Train
     found_train
   end
 
+  def update(attributes)
+    @name = attributes.fetch(:name)
+    @id = self.id()
+    DB.exec("UPDATE trains SET name = '#{@name}' WHERE id = #{@id};")
+  end
+
 
 
 end
