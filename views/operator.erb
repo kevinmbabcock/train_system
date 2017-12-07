@@ -6,7 +6,7 @@
 
 <h3>Here are all the trains in this database:</h3>
 
-<% if @trains.any?() %>
+<% if @trains.any? %>
   <p>Click on an train to see information about it and mark the cities where they stop</p>
 
   <ul>
@@ -21,12 +21,12 @@
 
 <h3>Here are all the cities in this database:</h3>
 
-<% if @cities.any?() %>
+<% if @cities.any? %>
   <p>Click on a city to see information about it and which trains will arrive</p>
 
   <ul>
     <% @cities.each do |city| %>
-      <li><a href="/cities/<%= city.id() %>"><%= city.name() %></a></li>
+      <li><a href="/cities/<%= city.id %>"><%= city.name %></a></li>
     <% end %>
   </ul>
 <% else %>
