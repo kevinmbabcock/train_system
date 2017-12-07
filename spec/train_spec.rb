@@ -49,4 +49,25 @@ describe(Train) do
     end
   end
 
+  describe("#delete") do
+    it("lets you delete a train from the database") do
+      new_train1 = Train.new({:name => "my_train", :id => nil})
+      new_train1.save()
+      new_train2 = Train.new({:name => "train2", :id => nil})
+      new_train2.save()
+      new_train1.delete()
+      expect(Train.all()).to(eq([new_train2]))
+    end
+    # it("deletes a train's tasks from the database") do
+    #   train = Train.new({:name => "Epicodus stuff", :id => nil})
+    #   train.save()
+    #   task = Task.new({:description => "learn SQL", :train_id => train.id()})
+    #   task.save()
+    #   task2 = Task.new({:description => "Review Ruby", :train_id => train.id()})
+    #   task2.save()
+    #   train.delete()
+    #   expect(Task.all()).to(eq([]))
+    # end
+  end
+
 end
