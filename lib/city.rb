@@ -36,4 +36,14 @@ class City
     found_city
   end
 
+  def update(attributes)
+    @name = attributes.fetch(:name)
+    @id = self.id
+    DB.exec("UPDATE cities SET name = '#{@name}' WHERE id = #{@id};")
+  end
+
+  def delete
+    DB.exec("DELETE FROM cities WHERE id = #{self.id};")
+  end
+
 end
