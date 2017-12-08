@@ -34,3 +34,25 @@ describe("operators adding cities", {:type => :feature}) do
     expect(page).to have_content('Add an city to the database:')
   end
 end
+
+describe("operators adding cities to trains", {:type => :feature}) do
+  it("allows an operator to select the cities a particular train will stop") do
+    visit('/trains')
+    fill_in('train_name', :with => 'train1')
+    click_button("Add Train")
+    visit('/operator')
+    click_link('train1')
+    expect(page).to have_content('train1')
+  end
+end
+
+describe("operators adding trains to cities", {:type => :feature}) do
+  it("allows an operator to select the trains that will stop in a particular city") do
+    visit('/cities')
+    fill_in('city_name', :with => 'Seattle')
+    click_button("Add city")
+    visit('/operator')
+    click_link('Seattle')
+    expect(page).to have_content('Seattle')
+  end
+end
