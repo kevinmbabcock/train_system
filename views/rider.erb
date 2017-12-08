@@ -1,0 +1,27 @@
+<h3>Hello Epicodus Train Riders</h3>
+
+<% if @trains.any?() %>
+  <p>Click on a train to see information about it</p>
+
+  <ul>
+    <% @trains.each do |train| %>
+      <li><a href="/rider/trains/<%= train.id() %>"><%= train.name() %></a></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>There are no trains added yet!</p>
+<% end %>
+
+<% if @cities.any?() %>
+  <p>Click on an city to see information about it</p>
+
+  <ul>
+    <% @cities.each do |city| %>
+      <li><a href="/rider/cities/<%= city.id() %>"><%= city.name() %></a></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>There are no cities added yet!</p>
+<% end %>
+
+<p><a href="/">Return to home page</a></p>

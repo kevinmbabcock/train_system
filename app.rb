@@ -19,6 +19,8 @@ get("/operator") do
 end
 
 get("/rider") do
+  @trains = Train.all
+  @cities = City.all
   erb(:rider)
 end
 
@@ -35,6 +37,27 @@ post("/trains") do
   erb(:trains)
 end
 
+get("/trains/:id") do
+  @train = Train.find(params.fetch("id").to_i)
+  @cities = City.all
+  erb(:train_info)
+end
+
+get("/rider/trains/:id") do
+  @train = Train.find(params.fetch("id").to_i)
+  @cities = City.all
+  erb(:rider_train)
+end
+
+patch("/trains/:id") do
+  train_id = params.fetch("id").to_i
+  @train = Train.find(train_id)
+  city_ids = params.fetch("city_ids")
+  @train.update({:city_ids => city_ids})
+  @cities = City.all
+  erb(:train_info)
+end
+
 get("/cities") do
   @cities = City.all
   erb(:cities)
@@ -46,4 +69,25 @@ post("/cities") do
   new_city.save
   @cities = City.all
   erb(:cities)
+end
+
+get("/cities/:id") do
+  @city = City.find(params.fetch("id").to_i)
+  @trains = Train.all
+  erb(:city_info)
+end
+
+get("/rider/cities/:id") do
+  @city = City.find(params.fetch("id").to_i)
+  @trains = Train.all
+  erb(:rider_city)
+end
+
+patch("/cities/:id") do
+  city_id = params.fetch("id").to_i
+  @city = City.find(city_id)
+  train_ids = params.fetch("train_ids")
+  @city.update({:train_ids => train_ids})
+  @trains = Train.all
+  erb(:city_info)
 end
